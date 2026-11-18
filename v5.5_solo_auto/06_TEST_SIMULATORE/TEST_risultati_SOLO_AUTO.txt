@@ -1,0 +1,73 @@
+== 1 tessera AUTO (tipo 1, 500)
+   tap AUTO: scritture=2 credito sulla card=500
+[1] t=9.3s D2(SCHUKO1)=0 D4=0 D5(SCHUKO2)=0 | flags=01 a=50 b=0 c=0 uidA=D1DE2F4B uidB=00000000 uidC=00000000
+        RX ok=42 err=0 coda=0
+        slotA act=1 tipo=1 cred=500 | slotB act=0 tipo=0 cred=0 | slotC act=0 tipo=0 cred=0 | recovery=0
+   [OK]   AUTO attiva (slot 0, flag bit0, UID)
+   [OK]   D2/D4/D5 spente
+== 2 tessera SCHUKO (tipo 3, 60 min) + scelta SCHUKO 1
+   <- errore RFID codice 8
+   tap S1: scritture=0 credito sulla card=60
+[2] t=15.6s D2(SCHUKO1)=0 D4=0 D5(SCHUKO2)=0 | flags=01 a=50 b=0 c=0 uidA=D1DE2F4B uidB=00000000 uidC=00000000
+        RX ok=71 err=1 coda=0
+        slotA act=1 tipo=1 cred=500 | slotB act=0 tipo=0 cred=0 | slotC act=0 tipo=0 cred=0 | recovery=0
+   [OK]   errore 8 'Operazione non disponibile'
+   [OK]   nessuna scrittura sulla card, credito invariato
+   [OK]   SCHUKO 1/2 non attivate, uscite spente
+   [OK]   AUTO ancora attiva
+== 3 tessera SCHUKO (tipo 3, 90 min) + scelta SCHUKO 2
+   <- errore RFID codice 8
+   tap S2: scritture=0 credito sulla card=90
+[3] t=21.9s D2(SCHUKO1)=0 D4=0 D5(SCHUKO2)=0 | flags=01 a=50 b=0 c=0 uidA=D1DE2F4B uidB=00000000 uidC=00000000
+        RX ok=101 err=1 coda=0
+        slotA act=1 tipo=1 cred=500 | slotB act=0 tipo=0 cred=0 | slotC act=0 tipo=0 cred=0 | recovery=0
+   [OK]   errore 8
+   [OK]   credito invariato
+   [OK]   Schuko spente
+== 4 vecchia tessera SCAME (tipo 2)
+   <- errore RFID codice 8
+   tap SCAME: scritture=0 credito sulla card=50
+[4] t=26.4s D2(SCHUKO1)=0 D4=0 D5(SCHUKO2)=0 | flags=01 a=50 b=0 c=0 uidA=D1DE2F4B uidB=00000000 uidC=00000000
+        RX ok=119 err=1 coda=0
+        slotA act=1 tipo=1 cred=500 | slotB act=0 tipo=0 cred=0 | slotC act=0 tipo=0 cred=0 | recovery=0
+   [OK]   errore 8
+   [OK]   Schuko spente
+== 5 conferma forzata di una tessera tipo 3 (scelte 1 e 2) senza passare dalla lettura
+[5] t=34.0s D2(SCHUKO1)=0 D4=0 D5(SCHUKO2)=0 | flags=01 a=50 b=0 c=0 uidA=D1DE2F4B uidB=00000000 uidC=00000000
+        RX ok=159 err=1 coda=0
+        slotA act=1 tipo=1 cred=500 | slotB act=0 tipo=0 cred=0 | slotC act=0 tipo=0 cred=0 | recovery=0
+   [OK]   nessuna Schuko avviata
+== 6 sessioni Schuko residue in RAM (es. da EEPROM vecchia): uscite comunque spente
+[6] t=36.0s D2(SCHUKO1)=0 D4=0 D5(SCHUKO2)=0 | flags=07 a=50 b=0 c=0 uidA=D1DE2F4B uidB=00000000 uidC=00000000
+        RX ok=165 err=2 coda=0
+        slotA act=1 tipo=1 cred=500 | slotB act=1 tipo=0 cred=0 | slotC act=1 tipo=0 cred=0 | recovery=0
+   [OK]   D2 e D5 restano spente
+[6b] t=40.4s D2(SCHUKO1)=0 D4=0 D5(SCHUKO2)=0 | flags=01 a=50 b=0 c=0 uidA=D1DE2F4B uidB=00000000 uidC=00000000
+        RX ok=179 err=3 coda=0
+        slotA act=1 tipo=1 cred=500 | slotB act=0 tipo=0 cred=0 | slotC act=0 tipo=0 cred=0 | recovery=0
+   [OK]   slot residui chiusi con stop 0x13, AUTO intatta
+== 7 sessione AUTO stabile per 20 s
+[7] t=60.4s D2(SCHUKO1)=0 D4=0 D5(SCHUKO2)=0 | flags=01 a=50 b=0 c=0 uidA=D1DE2F4B uidB=00000000 uidC=00000000
+        RX ok=257 err=3 coda=12
+        slotA act=1 tipo=1 cred=500 | slotB act=0 tipo=0 cred=0 | slotC act=0 tipo=0 cred=0 | recovery=0
+== 8 ripasso tessera AUTO: chiusura e credito riscritto
+   tap AUTO: scritture=2 credito sulla card=500
+[8] t=64.4s D2(SCHUKO1)=0 D4=0 D5(SCHUKO2)=0 | flags=00 a=0 b=0 c=0 uidA=00000000 uidB=00000000 uidC=00000000
+        RX ok=275 err=3 coda=0
+        slotA act=0 tipo=0 cred=0 | slotB act=0 tipo=0 cred=0 | slotC act=0 tipo=0 cred=0 | recovery=0
+   [OK]   AUTO chiusa
+   [OK]   credito riscritto sulla card
+== 9 nuova sessione AUTO dopo la chiusura
+   tap AUTO2: scritture=2 credito sulla card=300
+[9] t=70.7s D2(SCHUKO1)=0 D4=0 D5(SCHUKO2)=0 | flags=01 a=30 b=0 c=0 uidA=99AABBCC uidB=00000000 uidC=00000000
+        RX ok=305 err=3 coda=0
+        slotA act=1 tipo=1 cred=300 | slotB act=0 tipo=0 cred=0 | slotC act=0 tipo=0 cred=0 | recovery=0
+   [OK]   AUTO riparte
+   [OK]   Schuko spente
+== 10 emergenza
+[10] t=73.7s D2(SCHUKO1)=0 D4=0 D5(SCHUKO2)=0 | flags=08 a=0 b=0 c=0 uidA=00000000 uidB=00000000 uidC=00000000
+        RX ok=314 err=3 coda=0
+        slotA act=0 tipo=0 cred=0 | slotB act=0 tipo=0 cred=0 | slotC act=0 tipo=0 cred=0 | recovery=0
+   [OK]   tutto fermo
+
+RISULTATO: 0 verifiche fallite, frame di stato 137

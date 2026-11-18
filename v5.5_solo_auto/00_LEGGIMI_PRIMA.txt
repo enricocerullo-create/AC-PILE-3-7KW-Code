@@ -1,0 +1,18 @@
+CONVERSIONE COLONNINA - VERSIONE 5.5 - SOLO RICARICA AUTO (TIPO 2)
+SCHUKO 1 e SCHUKO 2 eliminate / disabilitate
+18/11/2026 - derivata dalla 5.4 (3 prese)
+
+01_FIRMWARE_WALLBOX_STM32  -> scheda WALLBOX (STM32, ST-Link), NO "Full chip erase"
+02_FIRMWARE_NODO_RFID_AVR  -> nodo RFID (ATmega328P)
+03_DISPLAY_NEXTION         -> sostituire immagine ID 3 nel Nextion Editor, ricompilare
+04_DOCUMENTAZIONE          -> istruzioni, cablaggio, modifiche, collaudo
+05_SORGENTI_PATCH          -> sorgenti delle modifiche (manutenzione)
+06_TEST_SIMULATORE         -> banco di prova e risultati della simulazione
+
+- Aggiornare WALLBOX, NODO RFID e DISPLAY insieme.
+- Aggiornare senza sessioni attive o sospese (chiudere prima tutte le ricariche).
+- Uscite D2 (ex SCHUKO 1), D4 e D5 (ex SCHUKO 2) sempre spente.
+- Card: solo Auto = tipo 1 (kWh). Card Schuko (tipo 3) e Scame (tipo 2): "Operazione non disponibile".
+- Programmatore RFID invariato.
+- Collaudo sulla colonnina obbligatorio prima dell'uso pubblico.
+- Far scollegare / mettere fuori servizio le prese Schuko da un elettricista.
