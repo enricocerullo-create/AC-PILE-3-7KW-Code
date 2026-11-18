@@ -1,0 +1,39 @@
+== T1 avvio a EEPROM vuota
+[T1] t=3.0s D2(SCHUKO1)=0 D4=0 D5(SCHUKO2)=0 | flags=00 a=0 b=0 c=0 uidA=00000000 uidB=00000000 uidC=00000000
+        slotA act=0 tipo=0 cred=0 | slotB act=0 tipo=0 cred=0 | slotC act=0 tipo=0 cred=0 | recovery=0
+== T2 tessera Schuko (30 min) -> scelta SCHUKO 1
+[T2] t=6.8s D2(SCHUKO1)=1 D4=0 D5(SCHUKO2)=0 | flags=02 a=0 b=30 c=0 uidA=00000000 uidB=00000000 uidC=11223344
+        slotA act=0 tipo=0 cred=0 | slotB act=0 tipo=0 cred=0 | slotC act=1 tipo=3 cred=30 | recovery=0
+== T3 tessera Schuko (45 min) -> scelta SCHUKO 2
+[T3] t=10.6s D2(SCHUKO1)=1 D4=0 D5(SCHUKO2)=1 | flags=06 a=0 b=30 c=45 uidA=00000000 uidB=12223344 uidC=11223344
+        slotA act=0 tipo=0 cred=0 | slotB act=1 tipo=3 cred=45 | slotC act=1 tipo=3 cred=30 | recovery=0
+== T4 tessera Auto (credito 1234) -> conferma automatica (scelta 0)
+[T4] t=14.4s D2(SCHUKO1)=1 D4=0 D5(SCHUKO2)=1 | flags=07 a=123 b=30 c=45 uidA=13223344 uidB=12223344 uidC=11223344
+        slotA act=1 tipo=1 cred=1234 | slotB act=1 tipo=3 cred=45 | slotC act=1 tipo=3 cred=30 | recovery=0
+== T5 altra tessera Schuko -> SCHUKO 1 occupata (atteso errore 2)
+   <- errore RFID codice 2
+[T5] t=18.2s D2(SCHUKO1)=1 D4=0 D5(SCHUKO2)=1 | flags=07 a=123 b=30 c=45 uidA=13223344 uidB=12223344 uidC=11223344
+        slotA act=1 tipo=1 cred=1234 | slotB act=1 tipo=3 cred=45 | slotC act=1 tipo=3 cred=30 | recovery=0
+   errore ricevuto=2
+== T6 annullamento (ok=0)
+   pending=0
+== T7 tessera Schuko con scelta 0 (non valida) -> nessuna presa
+[T7] t=23.8s D2(SCHUKO1)=1 D4=0 D5(SCHUKO2)=1 | flags=07 a=123 b=30 c=45 uidA=13223344 uidB=12223344 uidC=11223344
+        slotA act=1 tipo=1 cred=1234 | slotB act=1 tipo=3 cred=45 | slotC act=1 tipo=3 cred=30 | recovery=0
+== T8 attesa 65 s (scalo minuti + salvataggio EEPROM)
+[T8] t=88.8s D2(SCHUKO1)=1 D4=0 D5(SCHUKO2)=1 | flags=06 a=0 b=29 c=44 uidA=00000000 uidB=12223344 uidC=11223344
+        slotA act=0 tipo=0 cred=0 | slotB act=1 tipo=3 cred=44 | slotC act=1 tipo=3 cred=29 | recovery=0
+   record EEPROM slot C idx 3: 5C 08 01 11 22 33 44 03 00 1E 00 00 00 00 00 00 00 00 00 0C 
+== T9 riavvio (blackout) con EEPROM salvata
+[T9] t=3.0s D2(SCHUKO1)=0 D4=0 D5(SCHUKO2)=0 | flags=06 a=0 b=30 c=45 uidA=00000000 uidB=12223344 uidC=11223344
+        slotA act=0 tipo=0 cred=0 | slotB act=1 tipo=3 cred=45 | slotC act=1 tipo=3 cred=30 | recovery=1
+== T10 wallbox: riprendi (cmd 0x14)
+[T10] t=6.2s D2(SCHUKO1)=1 D4=0 D5(SCHUKO2)=1 | flags=06 a=0 b=30 c=45 uidA=00000000 uidB=12223344 uidC=11223344
+        slotA act=0 tipo=0 cred=0 | slotB act=1 tipo=3 cred=45 | slotC act=1 tipo=3 cred=30 | recovery=0
+== T11 wallbox: stop SCHUKO 1 (cmd 0x13 indice 2)
+[T11] t=9.4s D2(SCHUKO1)=0 D4=0 D5(SCHUKO2)=1 | flags=04 a=0 b=0 c=45 uidA=00000000 uidB=12223344 uidC=00000000
+        slotA act=0 tipo=0 cred=0 | slotB act=1 tipo=3 cred=45 | slotC act=0 tipo=0 cred=0 | recovery=0
+== T12 emergenza (D6 alto)
+[T12] t=12.4s D2(SCHUKO1)=0 D4=0 D5(SCHUKO2)=0 | flags=08 a=0 b=0 c=0 uidA=00000000 uidB=00000000 uidC=00000000
+        slotA act=0 tipo=0 cred=0 | slotB act=0 tipo=0 cred=0 | slotC act=0 tipo=0 cred=0 | recovery=0
+frame di stato ricevuti: 188

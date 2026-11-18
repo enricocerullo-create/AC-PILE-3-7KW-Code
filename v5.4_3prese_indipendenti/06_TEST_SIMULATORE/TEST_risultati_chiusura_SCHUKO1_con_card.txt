@@ -1,0 +1,41 @@
+== avvio AUTO (card D1..)
+   tap AUTO: scritture=2 credito sulla card=500
+[A] t=9.3s D2(SCHUKO1)=0 D4=0 D5(SCHUKO2)=0 | flags=01 a=50 b=0 c=0 uidA=D1DE2F4B uidB=00000000 uidC=00000000
+        slotA act=1 tipo=1 cred=500 | slotB act=0 tipo=0 cred=0 | slotC act=0 tipo=0 cred=0 | recovery=0
+== avvio SCHUKO 1
+   tap S1: scritture=2 credito sulla card=60
+[S1] t=15.6s D2(SCHUKO1)=1 D4=0 D5(SCHUKO2)=0 | flags=03 a=50 b=60 c=0 uidA=D1DE2F4B uidB=00000000 uidC=11223344
+        slotA act=1 tipo=1 cred=500 | slotB act=0 tipo=0 cred=0 | slotC act=1 tipo=3 cred=60 | recovery=0
+== avvio SCHUKO 2
+   tap S2: scritture=2 credito sulla card=90
+[S2] t=21.9s D2(SCHUKO1)=1 D4=0 D5(SCHUKO2)=1 | flags=07 a=50 b=60 c=90 uidA=D1DE2F4B uidB=55667788 uidC=11223344
+        slotA act=1 tipo=1 cred=500 | slotB act=1 tipo=3 cred=90 | slotC act=1 tipo=3 cred=60 | recovery=0
+== [0] chiusura SCHUKO 1 con la sua card (tenuta 150 ms)
+   tap S1: scritture=2 credito sulla card=60
+[fine S1] t=23.4s D2(SCHUKO1)=0 D4=0 D5(SCHUKO2)=1 | flags=05 a=50 b=0 c=90 uidA=D1DE2F4B uidB=55667788 uidC=00000000
+        slotA act=1 tipo=1 cred=500 | slotB act=1 tipo=3 cred=90 | slotC act=0 tipo=0 cred=0 | recovery=0
+   riavvio SCHUKO 1
+   tap S1: scritture=0 credito sulla card=60
+[S1 di nuovo] t=29.7s D2(SCHUKO1)=0 D4=0 D5(SCHUKO2)=1 | flags=05 a=50 b=0 c=90 uidA=D1DE2F4B uidB=55667788 uidC=00000000
+        slotA act=1 tipo=1 cred=500 | slotB act=1 tipo=3 cred=90 | slotC act=0 tipo=0 cred=0 | recovery=0
+== [1] chiusura SCHUKO 1 con la sua card (tenuta 600 ms)
+   tap S1: scritture=2 credito sulla card=60
+[fine S1] t=31.7s D2(SCHUKO1)=0 D4=0 D5(SCHUKO2)=1 | flags=05 a=50 b=0 c=90 uidA=D1DE2F4B uidB=55667788 uidC=00000000
+        slotA act=1 tipo=1 cred=500 | slotB act=1 tipo=3 cred=90 | slotC act=0 tipo=0 cred=0 | recovery=0
+   riavvio SCHUKO 1
+   tap S1: scritture=0 credito sulla card=60
+[S1 di nuovo] t=38.0s D2(SCHUKO1)=1 D4=0 D5(SCHUKO2)=1 | flags=07 a=50 b=60 c=90 uidA=D1DE2F4B uidB=55667788 uidC=11223344
+        slotA act=1 tipo=1 cred=500 | slotB act=1 tipo=3 cred=90 | slotC act=1 tipo=3 cred=60 | recovery=0
+== [2] chiusura SCHUKO 1 con la sua card (tenuta 2500 ms)
+   tap S1: scritture=2 credito sulla card=60
+[fine S1] t=41.5s D2(SCHUKO1)=0 D4=0 D5(SCHUKO2)=1 | flags=05 a=50 b=0 c=90 uidA=D1DE2F4B uidB=55667788 uidC=00000000
+        slotA act=1 tipo=1 cred=500 | slotB act=1 tipo=3 cred=90 | slotC act=0 tipo=0 cred=0 | recovery=0
+   riavvio SCHUKO 1
+   tap S1: scritture=2 credito sulla card=60
+[S1 di nuovo] t=47.8s D2(SCHUKO1)=1 D4=0 D5(SCHUKO2)=1 | flags=07 a=50 b=60 c=90 uidA=D1DE2F4B uidB=55667788 uidC=11223344
+        slotA act=1 tipo=1 cred=500 | slotB act=1 tipo=3 cred=90 | slotC act=1 tipo=3 cred=60 | recovery=0
+== chiusura SCHUKO 2
+   tap S2: scritture=2 credito sulla card=90
+[fine S2] t=49.8s D2(SCHUKO1)=1 D4=0 D5(SCHUKO2)=0 | flags=03 a=50 b=60 c=0 uidA=D1DE2F4B uidB=00000000 uidC=11223344
+        slotA act=1 tipo=1 cred=500 | slotB act=0 tipo=0 cred=0 | slotC act=1 tipo=3 cred=60 | recovery=0
+RISULTATO: frame AUTO=0 con UID presente: 0 ; frame con AUTO=0 durante il test: 0 ; frame totali 93

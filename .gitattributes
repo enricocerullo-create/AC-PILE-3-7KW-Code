@@ -1,0 +1,4 @@
+*.hex -text
+*.HMI binary
+*.png binary
+*.txt -text

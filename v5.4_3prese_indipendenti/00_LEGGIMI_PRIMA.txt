@@ -1,0 +1,20 @@
+CONVERSIONE COLONNINA - VERSIONE 5.4 - 3 PRESE INDIPENDENTI
+TIPO 2 (AUTO) + SCHUKO 1 + SCHUKO 2, attive contemporaneamente se libere
+17/11/2026 - corregge popup errato alla chiusura SCHUKO 1
+
+!! PRIMA DI INSTALLARE: verificare che la linea regga le 3 prese insieme
+!! (es. 32 A + 16 A + 16 A). Se no, usare la versione 5.2.
+
+01_FIRMWARE_WALLBOX_STM32  -> scheda WALLBOX (STM32, ST-Link), NO "Full chip erase"
+02_FIRMWARE_NODO_RFID_AVR  -> nodo RFID (ATmega328P)
+03_DISPLAY_NEXTION         -> sostituire immagine ID 3 nel Nextion Editor, ricompilare
+04_DOCUMENTAZIONE          -> istruzioni, cablaggio, modifiche, collaudo
+05_SORGENTI_PATCH          -> sorgenti delle modifiche (manutenzione)
+06_TEST_SIMULATORE         -> banco di prova e risultati della simulazione
+
+- Aggiornare WALLBOX e NODO RFID INSIEME (il protocollo tra le due schede e' cambiato).
+- Aggiornare senza sessioni attive o sospese.
+- SCHUKO 1 = uscita D2, SCHUKO 2 = uscita D5, D4 non usata.
+- Card: Auto = tipo 1 (kWh), Schuko = tipo 3 (minuti). Programmatore RFID invariato.
+- Collaudo sulla colonnina obbligatorio prima dell'uso pubblico.
+- Far verificare il cablaggio da un elettricista.
